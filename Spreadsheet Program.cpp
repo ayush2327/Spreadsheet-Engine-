@@ -182,12 +182,12 @@ class make_sheet {
 	   int evaluate_cell(int r, int c){
 	        if (r < 1 || r > R || c < 1 || c > C) return EVAL_ERROR;
 	        return sheet[r][c];
-	    }
-	
+	   }
+		
 	   int evaluate_operand(string_view token) {
 	        auto [r, c] = parse_cell_reference(token);
 	        if (r != -1 && c != -1) return evaluate_cell(r, c);
-	
+		   
 	        for (char ch : token) if (!isdigit(ch) && ch != '-') return EVAL_ERROR;
 	        return stoll(string(token));
 	    }
@@ -195,7 +195,7 @@ class make_sheet {
 		int evaluate_function(string_view func_name, string_view range_str){
 			 auto range = parse_range(range_str);
 			 if (range.empty()) return EVAL_ERROR;
-	
+			
 			 int r1 = range[0][0], c1 = range[0][1];
 			 int r2 = range[1][0], c2 = range[1][1];
 			 
